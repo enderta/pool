@@ -34,12 +34,7 @@ function Register() {
     };
 
     return (
-        <div>
-            <div>
-                <Image
-                    src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg"
-                    style={{position: "absolute", opacity: '0.5', height: "100%", width: "100%"}}/>
-            </div>
+        <div style={{backgroundColor: 'black', minHeight: '100vh'}} className={'bg-dark text-light'}>
             <div className="bg-dark container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
@@ -50,11 +45,11 @@ function Register() {
                         >
                             <h1
                                 className="text-center"
-                                style={{ color: 'goldenrod'  }}
+                                style={{color: 'goldenrod'}}
                             >
                                 Register
                             </h1>
-                            <Form onSubmit={handleSubmit} >
+                            <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>User Name</Form.Label>
                                     <Form.Control
@@ -82,7 +77,7 @@ function Register() {
                                     Register
                                 </Button>
                                 <Button
-                                    variant={ 'outline-warning'}
+                                    variant={'outline-warning'}
                                     onClick={() => {
                                         window.location = '/login';
                                     }}
