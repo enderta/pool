@@ -54,7 +54,7 @@ const CreatingPool = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Assuming user_id is defined and has the correct value
+
         let user_id = localStorage.getItem('user_id');
 
         try {
