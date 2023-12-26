@@ -21,18 +21,16 @@ const getResById = async (req, res) => {
 }
 
 const createRes = async (req, res) => {
-
-    const {user_id} = req.params;
+    const {poll_id} = req.body; // Corrected from poo_id to poll_id
     const {option} = req.body;
-    if(user_id && option) {
-        const data = await resService.createResponse(user_id, option);
+    if(poll_id && option) {
+        const data = await resService.createResponse(poll_id, option);
         res.json(data);
     }
     else {
         res.status(500).json({error: "Error creating response"});
     }
 }
-
 const updateRes = async (req, res) => {
     const {id} = req.params;
     const {option} = req.body;

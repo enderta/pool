@@ -14,7 +14,7 @@ const getQuestionById = async (req, res) => {
 
 
 const createQuestion = async (req, res) => {
-    const {user_id} = req.params;
+    const {user_id} = req.body;
     const {question} = req.body;
     if(user_id && question) {
         const data = await qservice.createQuestion(user_id, question);

@@ -9,8 +9,8 @@ const createQuestion = async (user_id,question) => {
         throw new Error("Missing required fields");
     }
     try {
-        const result = await pool.query("INSERT INTO polls (user_id,question) VALUES ($1,$2) RETURNING *",
-            [user_id,question]);
+        const result = await pool.query("INSERT INTO polls (question,user_id) VALUES ($1,$2) RETURNING *",
+            [question,user_id]);
         return {
             status: 'success',
             message: `Question created successfully`,

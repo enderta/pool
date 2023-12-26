@@ -14,7 +14,7 @@ router.use(cors(corsOptions));
 
 router.get('/q', verifyToken, questionsController.getQuestions);
 router.get('/q/:id', verifyToken, questionsController.getQuestionById);
-router.post('/q/', verifyToken, questionsController.createQuestion);
+router.post('/q', verifyToken, questionsController.createQuestion);
 router.put('/q/:id', verifyToken, questionsController.updateQuestion);
 router.delete('/q/:id', verifyToken, questionsController.deleteQuestion);
 
