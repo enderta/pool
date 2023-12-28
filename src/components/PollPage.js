@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Button, Card, ListGroup} from "react-bootstrap";
+import Logout from "./Logout";
 
 function PollPage() {
   const [question, setQuestion] = useState('');
@@ -9,7 +10,6 @@ function PollPage() {
   const [voteopt1, setVoteopt1] = useState(0);
   const [voteopt2, setVoteopt2] = useState(0);
   const [voteopt3, setVoteopt3] = useState(0);
-
 
   const reset = () => {
     setVoteopt1(0);
@@ -26,6 +26,7 @@ function PollPage() {
       },
     });
     const data = await response.json();
+
     setQuestion(data.data.question);
   };
 
@@ -38,7 +39,7 @@ function PollPage() {
       },
     });
     const data = await response.json();
-    console.log(data)
+
     const options = data.data.option;
     let opt2 = options.substring(1, options.length - 1);
     let opt3 = opt2.split(",");
@@ -49,12 +50,20 @@ function PollPage() {
 
   useEffect(() => {
     const poolId = localStorage.getItem('pool_id');
-    fetchQuestion(poolId).then(r => console.log(r));
+    if(poolId) {
+      fetchQuestion(poolId).then(r => console.log(r));
+    } else {
+      console.log('Pool ID is not available');
+    }
   }, []);
 
   useEffect(() => {
     const responseId = localStorage.getItem('response_id');
-    fetchOptions(responseId).then(r => console.log(r));
+    if(responseId) {
+      fetchOptions(responseId).then(r => console.log(r));
+    } else {
+      console.log('Response ID is not available');
+    }
   }, []);
 
   const handleVote = async (e) => {
@@ -70,39 +79,40 @@ function PollPage() {
   const totalVotes = voteopt1 + voteopt2 + voteopt3;
 
   const percent1 = totalVotes === 0 ? 0: ((voteopt1 / totalVotes) * 100).toFixed(2);
-    const percent2 = totalVotes === 0 ? 0 : ((voteopt2 / totalVotes) * 100).toFixed(2);
-    const percent3 = totalVotes === 0 ? 0 : ((voteopt3 / totalVotes) * 100).toFixed(2);
-
+  const percent2 = totalVotes === 0 ? 0 : ((voteopt2 / totalVotes) * 100).toFixed(2);
+  const percent3 = totalVotes === 0 ? 0 : ((voteopt3 / totalVotes) * 100).toFixed(2);
 
   return (
-      <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '10px'}}>
-        <h1 className="text-center" style={{color: 'goldenrod'}}>Poll</h1>
+      <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '20px'}}>
+        <Button variant="primary" href="/create" style={{margin: '10px'}}>New Poll</Button>
         <div className="container d-flex justify-content-center">
-      <Card style={{width: '50rem',height:"20rem"}}>
-        <Card.Body>
-          <Card.Title>{question}</Card.Title>
-          < ListGroup variant="flush">
-            <ListGroup.Item>
-              {opt1} - {percent1}%
-              <Button variant="primary" onClick={handleVote} name="opt1" style={{float: 'right'}}>Vote</Button>
-              <Card.Text>{voteopt1} votes</Card.Text>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              {opt2} - {percent2}%
-              <Button variant="primary" onClick={handleVote} name="opt2" style={{float: 'right'}}>Vote</Button>
-              <Card.Text>{voteopt2} votes</Card.Text>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              {opt3} - {percent3}%
-              <Button variant="primary" onClick={handleVote} name="opt3" style={{float: 'right'}}>Vote</Button>
-              <Card.Text>{voteopt3} votes</Card.Text>
-            </ListGroup.Item>
-          </ListGroup>
-          <Button variant="danger" onClick={reset} style={{marginTop: '10px'}}>Reset</Button>
-        </Card.Body>
-      </Card>
+          <Card className={'bg-dark text-light'} style={{width: '50rem',height:"20rem",margin:"10px"}}>
+            <Card.Body >
+              <Card.Title> <h1 className="text-center" style={{color: 'goldenrod'}}>{question}</h1></Card.Title>
+              < ListGroup variant="flush">
+              <ListGroup.Item>
+                  {opt1} - {percent1}%
+                  <Button variant="primary" onClick={handleVote} name="opt1" style={{float: 'right'}}>Vote</Button>
+                  <Card.Text>{voteopt1} votes</Card.Text>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  {opt2} - {percent2}%
+                  <Button variant="primary" onClick={handleVote} name="opt2" style={{float: 'right'}}>Vote</Button>
+                  <Card.Text>{voteopt2} votes</Card.Text>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  {opt3} - {percent3}%
+                  <Button variant="primary" onClick={handleVote} name="opt3" style={{float: 'right'}}>Vote</Button>
+                  <Card.Text>{voteopt3} votes</Card.Text>
+                </ListGroup.Item>
+              </ListGroup>
+
+              <Button variant="danger" onClick={reset} style={{marginTop: '10px'}}>Reset</Button>
+              <span style={{float: 'right',marginTop: '10px'}}><Logout/></span>
+            </Card.Body>
+          </Card>
         </div>
-        </div>
+      </div>
   );
 }
 

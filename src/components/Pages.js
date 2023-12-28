@@ -15,17 +15,19 @@ function Pages() {
             <Routes>
                 {isLoggedIn ? (
                     <>
-                        <Route path={"/home"} element={<Home/>}/>
+
+                        <Route path={"/*"} element={<Home/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/*" element={<Login/>}/>
+                        <Route path="/login" element={<Login/>}/>
                         <Route path="/create" element={<CreatingPool/>}/>
                         <Route path="/opts" element={<Opts/>}/>
                         <Route path="/pools" element={<PollPage/>}/>
                     </>
                 ) : (
                     <>
+                        <Route path={"/*"} element={<Home/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/*" element={<Login/>}/>
+                        <Route path="/login" element={<Login/>}/>
                     </>
                 )}
             </Routes>

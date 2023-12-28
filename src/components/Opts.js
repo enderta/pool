@@ -47,7 +47,7 @@ const Opts = () => {
     };
 
     return (
-        <div>
+        <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '10px'}}>
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">

@@ -27,7 +27,7 @@ function Login() {
         if (data.status === 'success') {
             localStorage.setItem('token', data.token);
             localStorage.setItem('user_id', data.user.id);
-            window.location = '/home';
+            window.location = '/create';
         } else {
             alert(data.message);
         }
