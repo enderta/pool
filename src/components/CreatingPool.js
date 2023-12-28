@@ -82,6 +82,18 @@ const CreatingPool = () => {
                                 >
                                     Submit
                                 </Button>
+                                <span style={{float: 'right'}}>
+                                    <Button
+                                        variant="primary"
+                                        type="submit"
+                                        style={{backgroundColor: 'goldenrod', border: 'none'}}
+                                        onClick={() => {
+                                            window.location = '/pools';
+                                        }}
+                                    >
+                                        Back to Pool
+                                    </Button>
+                                </span>
                             </Form>
                         </Card>
                     </div>
