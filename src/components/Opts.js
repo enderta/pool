@@ -39,6 +39,7 @@ const Opts = () => {
 
             const responseData = await responseResponse.json();
             console.log(responseData);
+            localStorage.setItem('response_id', responseData.data.id);
             window.location = '/home';
         } catch (error) {
             console.error("Error creating response: ", error);
