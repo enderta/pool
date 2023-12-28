@@ -35,7 +35,17 @@ function Login() {
 
     return (
         <div style={{backgroundColor: 'black', minHeight: '100vh'}} className={'bg-dark text-light'}>
-
+            <br/>
+            <Button
+                variant="primary"
+                type="submit"
+                style={{backgroundColor: 'goldenrod', border: 'none'}}
+                onClick={() => {
+                    window.location = '/home';
+                }}
+            >
+                Back to Home
+            </Button>
             <div className="bg-dark container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
