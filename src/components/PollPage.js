@@ -69,13 +69,16 @@ function PollPage() {
 
   const totalVotes = voteopt1 + voteopt2 + voteopt3;
 
-  const percent1 = totalVotes === 0 ? "no vote" : (voteopt1 / totalVotes) * 100;
-  const percent2 = totalVotes === 0 ? "no vote" : (voteopt2 / totalVotes) * 100;
-  const percent3 = totalVotes === 0 ? "no vote" : (voteopt3 / totalVotes) * 100;
+  const percent1 = totalVotes === 0 ? 0: ((voteopt1 / totalVotes) * 100).toFixed(2);
+    const percent2 = totalVotes === 0 ? 0 : ((voteopt2 / totalVotes) * 100).toFixed(2);
+    const percent3 = totalVotes === 0 ? 0 : ((voteopt3 / totalVotes) * 100).toFixed(2);
 
 
   return (
-      <Card style={{width: '18rem'}}>
+      <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '10px'}}>
+        <h1 className="text-center" style={{color: 'goldenrod'}}>Poll</h1>
+        <div className="container d-flex justify-content-center">
+      <Card style={{width: '50rem',height:"20rem"}}>
         <Card.Body>
           <Card.Title>{question}</Card.Title>
           < ListGroup variant="flush">
@@ -98,6 +101,8 @@ function PollPage() {
           <Button variant="danger" onClick={reset} style={{marginTop: '10px'}}>Reset</Button>
         </Card.Body>
       </Card>
+        </div>
+        </div>
   );
 }
 
