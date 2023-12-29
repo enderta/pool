@@ -93,22 +93,22 @@ function PollPage(props) {
                         </Card.Title>
                         < ListGroup variant="flush">
                             <ListGroup.Item>
-                                {opt1} - {percent1}%
+                                {opt1}
                                 <Button variant="primary" onClick={handleVote} name="opt1"
                                         style={{float: 'right'}}>Vote</Button>
-                                <Card.Text>{voteopt1} votes</Card.Text>
+
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                {opt2} - {percent2}%
+                                {opt2}
                                 <Button variant="primary" onClick={handleVote} name="opt2"
                                         style={{float: 'right'}}>Vote</Button>
-                                <Card.Text>{voteopt2} votes</Card.Text>
+
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                {opt3} - {percent3}%
+                                {opt3}
                                 <Button variant="primary" onClick={handleVote} name="opt3"
                                         style={{float: 'right'}}>Vote</Button>
-                                <Card.Text>{voteopt3} votes</Card.Text>
+
                             </ListGroup.Item>
                         </ListGroup>
 
@@ -121,7 +121,8 @@ function PollPage(props) {
                         <Card.Body>
                             <Card.Title><h1 className="text-center" style={{color: 'goldenrod'}}>Chart</h1></Card.Title>
                             <MyChart voteopt1={voteopt1} voteopt2={voteopt2} voteopt3={voteopt3}
-                                     opt1={opt1} opt2={opt2} opt3={opt3}/>
+                                     opt1={opt1} opt2={opt2} opt3={opt3}
+                            pert1={percent1} pert2={percent2} pert3={percent3}/>
                         </Card.Body>
                     </Card>
                 </div>

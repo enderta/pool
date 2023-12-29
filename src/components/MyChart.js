@@ -6,9 +6,9 @@ const MyChart = (props) => {
 
     const data = [
         ["Options", "Votes", {role: "style"}, {role: "annotation"}, {role: "tooltip"}],
-        [props.opt1, props.voteopt1, "#a91919", `${props.voteopt1} votes`, `${((props.voteopt1 / totalVotes) * 100).toFixed(2)}%`],
-        [props.opt2, props.voteopt2, "#173079", `${props.voteopt2} votes`, `${((props.voteopt2 / totalVotes) * 100).toFixed(2)}%`],
-        [props.opt3, props.voteopt3, "#0c4d1a", `${props.voteopt3} votes`, `${((props.voteopt3 / totalVotes) * 100).toFixed(2)}%`],
+        [props.opt1, props.voteopt1, "#a91919", `${props.voteopt1} votes`, `${props.pert1}%`],
+        [props.opt2, props.voteopt2, "#173079", `${props.voteopt2} votes`, `${props.pert2}%`],
+        [props.opt3, props.voteopt3, "#0c4d1a", `${props.voteopt3} votes`, `${props.pert3}%`],
     ];
     const options = {
         title: "Vote Results",
