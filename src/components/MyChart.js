@@ -1,29 +1,21 @@
 import React from 'react';
-import { Chart } from "react-google-charts";
+import {Chart} from "react-google-charts";
 
 const MyChart = (props) => {
+    const totalVotes = props.voteopt1 + props.voteopt2 + props.voteopt3;
+
     const data = [
-        [
-            "Options",
-            "Votes",
-            { role: "style" },
-            {
-                sourceColumn: 0,
-                role: "annotation",
-                type: "string",
-                calc: "stringify",
-            },
-        ],
-        [props.opt1, props.voteopt1, "#a91919", null],
-        [props.opt2, props.voteopt2, "#173079", null],
-        [props.opt3, props.voteopt3, "#0c4d1a", null],
+        ["Options", "Votes", {role: "style"}, {role: "annotation"}, {role: "tooltip"}],
+        [props.opt1, props.voteopt1, "#a91919", `${props.voteopt1} votes`, `${((props.voteopt1 / totalVotes) * 100).toFixed(2)}%`],
+        [props.opt2, props.voteopt2, "#173079", `${props.voteopt2} votes`, `${((props.voteopt2 / totalVotes) * 100).toFixed(2)}%`],
+        [props.opt3, props.voteopt3, "#0c4d1a", `${props.voteopt3} votes`, `${((props.voteopt3 / totalVotes) * 100).toFixed(2)}%`],
     ];
     const options = {
         title: "Vote Results",
         width: 600,
         height: 400,
-        bar: { groupWidth: "95%" },
-        legend: { position: "none" },
+        bar: {groupWidth: "95%"},
+        legend: {position: "none"},
     };
     return (
         <div>
