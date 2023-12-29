@@ -1,17 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Card, ListGroup} from "react-bootstrap";
-import Logout from "./Logout";
-import MyChart from "./MyChart";
-
-function PollPage(props) {
-    const [question, setQuestion] = useState('');
-    const [opt1, setOpt1] = useState('');
-    const [opt2, setOpt2] = useState('');
-    const [opt3, setOpt3] = useState('');
-    const [voteopt1, setVoteopt1] = useState(0);
-    const [voteopt2, setVoteopt2] = useState(0);
-    const [voteopt3, setVoteopt3] = useState(0);
-
+import React, {useEffect, useState} from 'react'; import {Button, Card, ListGroup} from "react-bootstrap"; import Logout from "./Logout"; import MyChart from "./MyChart";  function PollPage(props) { const [question, setQuestion] = useState(''); const [opt1, setOpt1] = useState(''); const [opt2, setOpt2] = useState(''); const [opt3, setOpt3] = useState(''); const [voteopt1, setVoteopt1] = useState(0); const [voteopt2, setVoteopt2] = useState(0); const [voteopt3, setVoteopt3] = useState(0);
     const reset = () => {
         setVoteopt1(0);
         setVoteopt2(0);

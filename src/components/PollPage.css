@@ -1,0 +1,52 @@
+.poll-page {
+    background-color: #333;
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.new-poll-button {
+    margin: 10px;
+}
+
+.poll-container {
+    display: flex;
+    justify-content: center;
+}
+
+.poll-card, .chart-card {
+    background-color: #444;
+    color: #fff;
+    width: 100rem;
+    height: 30rem;
+    margin: 10px;
+}
+
+.poll-title, .chart-title {
+    color: goldenrod;
+    text-align: center;
+}
+
+.poll-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vote-button {
+    margin-left: auto;
+}
+
+.reset-button {
+    margin-top: 10px;
+}
+
+.logout-button {
+    float: right;
+    margin-top: 10px;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+}
