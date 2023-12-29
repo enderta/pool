@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {Button, Card, ListGroup} from "react-bootstrap";
 import Logout from "./Logout";
+import MyChart from "./MyChart";
 
-function PollPage() {
+function PollPage(props) {
   const [question, setQuestion] = useState('');
   const [opt1, setOpt1] = useState('');
   const [opt2, setOpt2] = useState('');
@@ -86,7 +87,7 @@ function PollPage() {
       <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '20px'}}>
         <Button variant="primary" href="/create" style={{margin: '10px'}}>New Poll</Button>
         <div className="container d-flex justify-content-center">
-          <Card className={'bg-dark text-light'} style={{width: '50rem',height:"20rem",margin:"10px"}}>
+          <Card className={'bg-dark text-light'} style={{width: '100rem',height:"30rem",margin:"10px"}}>
             <Card.Body >
               <Card.Title> <h1 className="text-center" style={{color: 'goldenrod'}}>{question}</h1></Card.Title>
               < ListGroup variant="flush">
@@ -111,6 +112,15 @@ function PollPage() {
               <span style={{float: 'right',marginTop: '10px'}}><Logout/></span>
             </Card.Body>
           </Card>
+          <div className="container d-flex justify-content-center">
+            <Card className={'bg-dark text-light'} style={{width: '50rem',height:"20rem",margin:"10px"}}>
+              <Card.Body >
+                <Card.Title> <h1 className="text-center" style={{color: 'goldenrod'}}>Chart</h1></Card.Title>
+                <MyChart voteopt1={voteopt1} voteopt2={voteopt2} voteopt3={voteopt3}
+                opt1={opt1} opt2={opt2} opt3={opt3}/>
+                </Card.Body>
+            </Card>
+          </div>
         </div>
       </div>
   );
