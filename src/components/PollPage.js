@@ -122,7 +122,7 @@ function PollPage(props) {
                             <Card.Title><h1 className="text-center" style={{color: 'goldenrod'}}>Chart</h1></Card.Title>
                             <MyChart voteopt1={voteopt1} voteopt2={voteopt2} voteopt3={voteopt3}
                                      opt1={opt1} opt2={opt2} opt3={opt3}
-                            pert1={percent1} pert2={percent2} pert3={percent3}/>
+                                     pert1={percent1} pert2={percent2} pert3={percent3}/>
                         </Card.Body>
                     </Card>
                 </div>
