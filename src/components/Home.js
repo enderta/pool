@@ -13,9 +13,9 @@ function Home() {
                         <a href={'/login'} style={{textDecoration: "none"}}>
                             <h1 style={{color: 'darkgreen'}}>Login</h1>
                         </a>
-                       <span style={{color: 'goldenrod'}}> or </span>
-                        <a href={'/register'} style={{textDecoration: "none"}}>
-                            <h1 style={{color: 'darkgreen'}}>Register</h1>
+                        <span style={{color: 'goldenrod'}}> or </span>
+                        <a href={'/pools'} style={{textDecoration: "none"}}>
+                            <h1 style={{color: 'darkgreen'}}>Go to Poll</h1>
                         </a>
                         <div style={{display: "flex", justifyContent: "center"}}>
                             <a href="https://github.com/enderta" target='blank' style={{marginRight: "20px"}}>

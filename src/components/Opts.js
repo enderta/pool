@@ -6,6 +6,8 @@ const Opts = () => {
     const [option2, setOption2] = useState('');
     const [option3, setOption3] = useState('');
 
+
+
     const handleChanges = (e) => {
        if (e.target.name === 'option1') {
             setOption1(e.target.value);
@@ -18,6 +20,7 @@ const Opts = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // eslint-disable-next-line no-unused-expressions
 
         try {
             // Call createRes API
@@ -28,7 +31,7 @@ const Opts = () => {
                     'Authorization': localStorage.getItem('token'),
                 },
                 body: JSON.stringify({
-                    poll_id: localStorage.getItem('pool_id'), // Corrected from pool_id to poll_id
+                    poll_id:localStorage.getItem('pool_id')=== null ? 32 : localStorage.getItem('pool_id'), // Corrected from pool_id to poll_id
                     option: [option1, option2, option3]
                 }),
             });

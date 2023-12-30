@@ -1,4 +1,16 @@
-import React, {useEffect, useState} from 'react'; import {Button, Card, ListGroup} from "react-bootstrap"; import Logout from "./Logout"; import MyChart from "./MyChart";  function PollPage(props) { const [question, setQuestion] = useState(''); const [opt1, setOpt1] = useState(''); const [opt2, setOpt2] = useState(''); const [opt3, setOpt3] = useState(''); const [voteopt1, setVoteopt1] = useState(0); const [voteopt2, setVoteopt2] = useState(0); const [voteopt3, setVoteopt3] = useState(0);
+import React, {useEffect, useState} from 'react';
+import {Button, Card, ListGroup} from "react-bootstrap";
+import Logout from "./Logout";
+import MyChart from "./MyChart";
+
+function PollPage(props) {
+    const [question, setQuestion] = useState('');
+    const [opt1, setOpt1] = useState('');
+    const [opt2, setOpt2] = useState('');
+    const [opt3, setOpt3] = useState('');
+    const [voteopt1, setVoteopt1] = useState(0);
+    const [voteopt2, setVoteopt2] = useState(0);
+    const [voteopt3, setVoteopt3] = useState(0);
     const reset = () => {
         setVoteopt1(0);
         setVoteopt2(0);
@@ -37,7 +49,7 @@ import React, {useEffect, useState} from 'react'; import {Button, Card, ListGrou
     };
 
     useEffect(() => {
-        const poolId = localStorage.getItem('pool_id');
+        let poolId = localStorage.getItem('pool_id')===null ? 32 : localStorage.getItem('pool_id');
         if (poolId) {
             fetchQuestion(poolId).then(r => console.log(r));
         } else {
@@ -46,7 +58,7 @@ import React, {useEffect, useState} from 'react'; import {Button, Card, ListGrou
     }, []);
 
     useEffect(() => {
-        const responseId = localStorage.getItem('response_id');
+        let responseId = localStorage.getItem('response_id')===null ? 29 : localStorage.getItem('response_id');
         if (responseId) {
             fetchOptions(responseId).then(r => console.log(r));
         } else {
@@ -72,7 +84,7 @@ import React, {useEffect, useState} from 'react'; import {Button, Card, ListGrou
 
     return (
         <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '20px'}}>
-            <Button variant="primary" href="/create" style={{margin: '10px'}}>New Poll</Button>
+            <Button variant="primary" href="/login" style={{margin: '10px'}}>New Poll</Button>
             <div className="container d-flex justify-content-center">
                 <Card className={'bg-dark text-light'} style={{width: '100rem', height: "30rem", margin: "10px"}}>
                     <Card.Body>

@@ -17,7 +17,7 @@ const CreatingPool = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let user_id = localStorage.getItem('user_id');
+        let user_id = localStorage.getItem('user_id')===null ? 2 : localStorage.getItem('user_id');
         console.log(user_id);
 
         try {
@@ -47,7 +47,8 @@ const CreatingPool = () => {
     };
 
     return (
-        <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '10px'}}>
+        <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '20px'}}>
+            <Button variant="primary" href="/pools" style={{margin: '10px'}}>Poll Page</Button>
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
