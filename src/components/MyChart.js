@@ -11,11 +11,19 @@ const MyChart = (props) => {
         [props.opt3, props.voteopt3, "#0c4d1a", `${props.voteopt3} votes`, `${props.pert3}%`],
     ];
     const options = {
-        title: "Vote Results",
         width: 600,
         height: 400,
         bar: {groupWidth: "95%"},
         legend: {position: "none"},
+        hAxis: {
+            title: "Votes",
+
+        },
+        vAxis: {
+            title: "Options",
+
+        },
+
     };
     return (
         <div>
