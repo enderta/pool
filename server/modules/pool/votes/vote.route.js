@@ -18,7 +18,7 @@ router.get("/votes",  voteController.getVotes);
 
 //get a question by id
 
-router.get("/votes/:id", voteController.getVoteById);
+router.get("/votes/:id", voteController.getVote);
 
 //create a question
 

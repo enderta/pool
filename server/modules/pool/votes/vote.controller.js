@@ -1,13 +1,18 @@
-const voteservice = require('../services/voteservice');
+const voteservice = require('./vote.service');
 
 const getVotes = async (req, res) => {
     try {
         const votes = await voteservice.getVotes();
-        res.status(200).json(votes);
+        if (votes.length === 0) {
+            res.status(404).json({ error: 'No votes found' });
+        } else {
+            res.status(200).json(votes);
+        }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 const getVote = async (req, res) => {
     try {
