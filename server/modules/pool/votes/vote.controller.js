@@ -23,12 +23,32 @@ const getVote = async (req, res) => {
     }
 };
 
+/*
+const createRes = async (req, res) => {
+    const {poll_id} = req.body; // Corrected from poo_id to poll_id
+    const {option} = req.body;
+    if(poll_id && option) {
+        const data = await resService.createResponse(poll_id, option);
+        res.json(data);
+    }
+    else {
+        res.status(500).json({error: "Error creating response"});
+    }
+}
+* */
+
 const createVote = async (req, res) => {
-    try {
-        const vote = await voteservice.createVote(req.body);
-        res.status(201).json(vote);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    const { response_id } = req.body;
+
+    if (response_id) {
+        try {
+            const data = await voteservice.createVote(Number(response_id));  // Parse response_id as a number
+            res.json(data);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    } else {
+        res.status(400).json({ error: "Missing response_id in the request body" });
     }
 };
 

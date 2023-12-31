@@ -22,7 +22,7 @@ router.get("/votes/:id", voteController.getVote);
 
 //create a question
 
-router.post("/votes", verifyToken, voteController.createVote);
+router.post("/votes",  voteController.createVote);
 
 //update a question
 

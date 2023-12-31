@@ -2,11 +2,15 @@
 const pool = require("../../../db.config");
 
 const createVote = async (response_id) => {
-  const newVote = await pool.query(
-      "INSERT INTO votes (response_id) VALUES($1) RETURNING *",
-      [response_id]
-  );
-  return newVote.rows[0];
+  try {
+    const newVote = await pool.query(
+        "INSERT INTO votes (response_id) VALUES ($1) RETURNING *",
+        [response_id]
+    );
+    return newVote.rows[0];
+  } catch (error) {
+    throw new Error(`Error creating vote: ${error.message}`);
+  }
 };
 
 const getVotes = async () => {
