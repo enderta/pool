@@ -27,6 +27,7 @@ const userRoute = require("./modules/users/users.route");
 const questionsRoute = require("./modules/pool/questions/questions.route");
 const resRoute = require("./modules/pool/responses/res.route");
 const voteRoute = require("./modules/pool/votes/vote.route");
+const allRoute = require("./modules/pool/all/all.route");
 
 app.use("/api", userRoute);
 
@@ -35,6 +36,8 @@ app.use("/api", questionsRoute);
 app.use("/api", resRoute);
 
 app.use('/api', voteRoute);
+
+app.use('/api', allRoute);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
