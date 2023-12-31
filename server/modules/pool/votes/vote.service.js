@@ -36,10 +36,23 @@ const deleteVote = async (id) => {
   return deleteVote.rowCount > 0;
 };
 
+const getVoteCount = async (response_id) => {
+  try {
+    const voteCount = await pool.query(
+        "SELECT COUNT(*) FROM votes WHERE response_id = $1",
+        [response_id]
+    );
+    return parseInt(voteCount.rows[0]["count"]); // Access the count property of the first row
+  } catch (error) {
+    throw new Error(`Error getting vote count: ${error.message}`);
+  }
+};
+
 module.exports = {
   createVote,
   getVotes,
   getVote,
   updateVote,
   deleteVote,
+  getVoteCount,
 };

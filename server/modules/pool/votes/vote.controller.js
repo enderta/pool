@@ -80,10 +80,25 @@ const deleteVote = async (req, res) => {
     }
 };
 
+const getVoteCount = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const voteCount = await voteservice.getVoteCount(id);
+        if (voteCount) {
+            res.status(200).json(voteCount);
+        } else {
+            res.status(404).json({ message: `Vote count for response ${id} not found` });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getVotes,
     getVote,
     createVote,
     updateVote,
-    deleteVote
+    deleteVote,
+    getVoteCount
 };

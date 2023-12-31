@@ -32,4 +32,8 @@ router.put("/votes/:id", verifyToken, voteController.updateVote);
 
 router.delete("/votes/:id", verifyToken, voteController.deleteVote);
 
+// get vote count
+
+router.get("/votes/count/:id", voteController.getVoteCount);
+
 module.exports = router;
