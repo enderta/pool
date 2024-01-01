@@ -6,6 +6,7 @@ import Home from "./Home";
 import CreatingPool from "./CreatingPool";
 import Opts from "./Opts";
 import PollPage from "./PollPage";
+import MyPolls from "./MyPolls";
 
 function Pages() {
     const isLoggedIn = localStorage.getItem("token");
@@ -22,6 +23,7 @@ function Pages() {
                         <Route path="/create" element={<CreatingPool/>}/>
                         <Route path="/opts" element={<Opts/>}/>
                         <Route path="/pools" element={<PollPage/>}/>
+                        <Route path='/all' element={<MyPolls/>}/>
                     </>
                 ) : (
                     <>
