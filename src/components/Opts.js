@@ -16,8 +16,7 @@ const Opts = () => {
         }
     }
 
-    const handleSubmit1 = async (e) => {
-        e.preventDefault();
+    const handleSubmit1 = async () => {
         try {
             const responseResponse = await fetch('http://localhost:5000/api/res', {
                 method: 'POST',
@@ -37,14 +36,12 @@ const Opts = () => {
 
             const responseData = await responseResponse.json();
             localStorage.setItem('response_id1', responseData.data.id);
-            window.location = '/pools';
         } catch (error) {
             console.error("Error creating response: ", error);
         }
     };
 
-    const handleSubmit2 = async (e) => {
-        e.preventDefault();
+    const handleSubmit2 = async () => {
         try {
             const responseResponse = await fetch('http://localhost:5000/api/res', {
                 method: 'POST',
@@ -64,14 +61,12 @@ const Opts = () => {
 
             const responseData = await responseResponse.json();
             localStorage.setItem('response_id2', responseData.data.id);
-            window.location = '/pools';
         } catch (error) {
             console.error("Error creating response: ", error);
         }
     };
 
-    const handleSubmit3= async (e) => {
-        e.preventDefault();
+    const handleSubmit3= async () => {
         try {
             const responseResponse = await fetch('http://localhost:5000/api/res', {
                 method: 'POST',
@@ -91,6 +86,17 @@ const Opts = () => {
 
             const responseData = await responseResponse.json();
             localStorage.setItem('response_id3', responseData.data.id);
+        } catch (error) {
+            console.error("Error creating response: ", error);
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await handleSubmit1();
+            await handleSubmit2();
+            await handleSubmit3();
             window.location = '/pools';
         } catch (error) {
             console.error("Error creating response: ", error);
@@ -112,7 +118,7 @@ const Opts = () => {
                             >
                                 Create Options
                             </h1>
-                            <Form onSubmit={(e) => {handleSubmit1(e); handleSubmit2(e); handleSubmit3(e);}}>
+                            <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Option 1</Form.Label>
                                     <Form.Control

@@ -191,14 +191,13 @@ function PollPage(props) {
         }
     };
 
-    const sendVote2 = async (response_id2) => {
-        const storedResponseId = localStorage.getItem('response_id12')===null ? 8 : localStorage.getItem('response_id2');
+    const sendVote2 = async () => {
+        const storedResponseId = localStorage.getItem('response_id2')===null ? 8 : localStorage.getItem('response_id2');
         if (storedResponseId) {
             const response = await fetch(`http://localhost:5000/api/votes`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-
                 },
                 body: JSON.stringify({
                     response_id: storedResponseId,
@@ -207,7 +206,7 @@ function PollPage(props) {
             const data = await response.json();
             console.log(data);
         } else {
-            console.log(`Response ID ${response_id2} not found in local storage.`);
+            console.log(`Response ID 2 not found in local storage.`);
         }
     };
 
