@@ -7,7 +7,9 @@ const Logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('pool_id');
         localStorage.removeItem('user_id');
-        localStorage.removeItem('response_id');
+        localStorage.removeItem('response_id1');
+        localStorage.removeItem('response_id2');
+        localStorage.removeItem('response_id3');
         window.location = '/home';
     }
     return (

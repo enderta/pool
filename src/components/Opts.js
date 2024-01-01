@@ -6,10 +6,8 @@ const Opts = () => {
     const [option2, setOption2] = useState('');
     const [option3, setOption3] = useState('');
 
-
-
     const handleChanges = (e) => {
-       if (e.target.name === 'option1') {
+        if (e.target.name === 'option1') {
             setOption1(e.target.value);
         } else if (e.target.name === 'option2') {
             setOption2(e.target.value);
@@ -18,12 +16,9 @@ const Opts = () => {
         }
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit1 = async (e) => {
         e.preventDefault();
-        // eslint-disable-next-line no-unused-expressions
-
         try {
-            // Call createRes API
             const responseResponse = await fetch('http://localhost:5000/api/res', {
                 method: 'POST',
                 headers: {
@@ -31,8 +26,8 @@ const Opts = () => {
                     'Authorization': localStorage.getItem('token'),
                 },
                 body: JSON.stringify({
-                    poll_id:localStorage.getItem('pool_id')=== null ? 32 : localStorage.getItem('pool_id'), // Corrected from pool_id to poll_id
-                    option: [option1, option2, option3]
+                    poll_id:localStorage.getItem('pool_id')=== null ? 32 : localStorage.getItem('pool_id'),
+                    option: option1
                 }),
             });
 
@@ -41,8 +36,61 @@ const Opts = () => {
             }
 
             const responseData = await responseResponse.json();
-            console.log(responseData);
-            localStorage.setItem('response_id', responseData.data.id);
+            localStorage.setItem('response_id1', responseData.data.id);
+            window.location = '/pools';
+        } catch (error) {
+            console.error("Error creating response: ", error);
+        }
+    };
+
+    const handleSubmit2 = async (e) => {
+        e.preventDefault();
+        try {
+            const responseResponse = await fetch('http://localhost:5000/api/res', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('token'),
+                },
+                body: JSON.stringify({
+                    poll_id:localStorage.getItem('pool_id')=== null ? 32 : localStorage.getItem('pool_id'),
+                    option:  option2
+                }),
+            });
+
+            if (!responseResponse.ok) {
+                throw new Error('Error creating response');
+            }
+
+            const responseData = await responseResponse.json();
+            localStorage.setItem('response_id2', responseData.data.id);
+            window.location = '/pools';
+        } catch (error) {
+            console.error("Error creating response: ", error);
+        }
+    };
+
+    const handleSubmit3= async (e) => {
+        e.preventDefault();
+        try {
+            const responseResponse = await fetch('http://localhost:5000/api/res', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('token'),
+                },
+                body: JSON.stringify({
+                    poll_id:localStorage.getItem('pool_id')=== null ? 32 : localStorage.getItem('pool_id'),
+                    option: option3
+                }),
+            });
+
+            if (!responseResponse.ok) {
+                throw new Error('Error creating response');
+            }
+
+            const responseData = await responseResponse.json();
+            localStorage.setItem('response_id3', responseData.data.id);
             window.location = '/pools';
         } catch (error) {
             console.error("Error creating response: ", error);
@@ -54,7 +102,6 @@ const Opts = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
-
                         <Card
                             className={'bg-dark text-light'}
                             style={{margin: '10px', padding: '10px', opacity: '0.9'}}
@@ -65,7 +112,7 @@ const Opts = () => {
                             >
                                 Create Options
                             </h1>
-                            <Form onSubmit={handleSubmit}>
+                            <Form onSubmit={(e) => {handleSubmit1(e); handleSubmit2(e); handleSubmit3(e);}}>
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Option 1</Form.Label>
                                     <Form.Control
@@ -86,7 +133,6 @@ const Opts = () => {
                                         onChange={handleChanges}
                                     />
                                 </Form.Group>
-                                {/* eslint-disable-next-line react/jsx-no-undef */}
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Option 3</Form.Label>
                                     <Form.Control

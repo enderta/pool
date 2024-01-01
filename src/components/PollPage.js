@@ -16,7 +16,42 @@ function PollPage(props) {
         setVoteopt2(0);
         setVoteopt3(0);
     }
+    const fetchVote1 = async (response_id1) => {
+        const response = await fetch(`http://localhost:5000/api/votes/count/${response_id1}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
 
+        setVoteopt1(data);
+    };
+    const fetchVote2 = async (response_id2) => {
+        const response = await fetch(`http://localhost:5000/api/votes/count/${response_id2}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+
+        setVoteopt2(data);
+    };
+    const fetchVote3 = async (response_id3) => {
+        const response = await fetch(`http://localhost:5000/api/votes/count/${response_id3}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+
+        setVoteopt3(data);
+    };
     const fetchQuestion = async (id) => {
         const response = await fetch(`http://localhost:5000/api/q/${id}`, {
             method: 'GET',
@@ -30,7 +65,7 @@ function PollPage(props) {
         setQuestion(data.data.question);
     };
 
-    const fetchOptions = async (id) => {
+    const fetchOption1 = async (id) => {
         const response = await fetch(`http://localhost:5000/api/res/${id}`, {
             method: 'GET',
             headers: {
@@ -40,12 +75,36 @@ function PollPage(props) {
         });
         const data = await response.json();
 
-        const options = data.data.option;
-        let opt2 = options.substring(1, options.length - 1);
-        let opt3 = opt2.split(",");
-        setOpt1(opt3.map((option) => option.trim().substring(1, option.length - 1))[0]);
-        setOpt2(opt3.map((option) => option.trim().substring(1, option.length - 1))[1]);
-        setOpt3(opt3.map((option) => option.trim().substring(1, option.length - 1))[2]);
+        const option = data.data.option;
+        setOpt1(option);
+    };
+
+    const fetchOption2 = async (id) => {
+        const response = await fetch(`http://localhost:5000/api/res/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+
+        const option = data.data.option;
+        setOpt2(option);
+    };
+
+    const fetchOption3 = async (id) => {
+        const response = await fetch(`http://localhost:5000/api/res/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+
+        const option = data.data.option;
+        setOpt3(option);
     };
 
     useEffect(() => {
@@ -58,23 +117,149 @@ function PollPage(props) {
     }, []);
 
     useEffect(() => {
-        let responseId = localStorage.getItem('response_id')===null ? 29 : localStorage.getItem('response_id');
-        if (responseId) {
-            fetchOptions(responseId).then(r => console.log(r));
+        let response_id1 = localStorage.getItem('response_id1')===null ? 7 : localStorage.getItem('response_id1');
+        if (response_id1) {
+            fetchOption1(response_id1).then(r => console.log(r));
         } else {
             console.log('Response ID is not available');
         }
     }, []);
 
-    const handleVote = async (e) => {
-        if (e.target.name === 'opt1') {
-            setVoteopt1(voteopt1 + 1);
-        } else if (e.target.name === 'opt2') {
-            setVoteopt2(voteopt2 + 1);
-        } else if (e.target.name === 'opt3') {
-            setVoteopt3(voteopt3 + 1);
+    useEffect(() => {
+        let response_id2 = localStorage.getItem('response_id2')===null ? 8 : localStorage.getItem('response_id2');
+        if (response_id2) {
+            fetchOption2(response_id2).then(r => console.log(r));
+        } else {
+            console.log('Response ID is not available');
         }
+    }, []);
+
+    useEffect(() => {
+        let response_id3 = localStorage.getItem('response_id3')===null ? 9 : localStorage.getItem('response_id3');
+        if (response_id3) {
+            fetchOption3(response_id3).then(r => console.log(r));
+        } else {
+            console.log('Response ID is not available');
+        }
+    }, []);
+
+    useEffect(() => {
+        let response_id1 = localStorage.getItem('response_id1')===null ? 7 : localStorage.getItem('response_id1');
+        if (response_id1) {
+            fetchVote1(response_id1).then(r => console.log(r));
+        } else {
+            console.log('Response ID is not available');
+        }
+    }, []);
+
+    useEffect(() => {
+        let response_id2 = localStorage.getItem('response_id2')===null ? 8 : localStorage.getItem('response_id2');
+        if (response_id2) {
+            fetchVote2(response_id2).then(r => console.log(r));
+        } else {
+            console.log('Response ID is not available');
+        }
+    }, []);
+
+    useEffect(() => {
+        let response_id3 = localStorage.getItem('response_id3')===null ? 9 : localStorage.getItem('response_id3');
+        if (response_id3) {
+            fetchVote3(response_id3).then(r => console.log(r));
+        } else {
+            console.log('Response ID is not available');
+        }
+    }, []);
+
+
+    const sendVote1 = async (response_id1) => {
+        const storedResponseId = localStorage.getItem('response_id1')===null ? 7 : localStorage.getItem('response_id1');
+        if (storedResponseId) {
+            const response = await fetch(`http://localhost:5000/api/votes`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+                body: JSON.stringify({
+                    response_id: storedResponseId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+        } else {
+            console.log(`Response ID ${response_id1} not found in local storage.`);
+        }
+    };
+
+    const sendVote2 = async (response_id2) => {
+        const storedResponseId = localStorage.getItem('response_id12')===null ? 8 : localStorage.getItem('response_id2');
+        if (storedResponseId) {
+            const response = await fetch(`http://localhost:5000/api/votes`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+                body: JSON.stringify({
+                    response_id: storedResponseId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+        } else {
+            console.log(`Response ID ${response_id2} not found in local storage.`);
+        }
+    };
+
+    const sendVote3 = async (response_id3) => {
+        const storedResponseId = localStorage.getItem('response_id3')===null ? 9 : localStorage.getItem('response_id3');
+        if (storedResponseId) {
+            const response = await fetch(`http://localhost:5000/api/votes`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+                body: JSON.stringify({
+                    response_id: storedResponseId,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+        } else {
+            console.log(`Response ID ${response_id3} not found in local storage.`);
+        }
+    };
+
+    const handleVote = (e) => {
+        e.preventDefault();
+        const name = e.target.name;
+        if (name === 'opt1') {
+            let response_id1 = localStorage.getItem('response_id1')===null ? 7 : localStorage.getItem('response_id1');
+            if (response_id1) {
+                sendVote1(response_id1).then(r => console.log(r));
+            } else {
+                console.log('Response ID is not available');
+            }
+        } else if (name === 'opt2') {
+            let response_id2 = localStorage.getItem('response_id2')===null ? 8 : localStorage.getItem('response_id2');
+            if (response_id2) {
+                sendVote2(response_id2).then(r => console.log(r));
+            } else {
+                console.log('Response ID is not available');
+            }
+        } else if (name === 'opt3') {
+            let response_id3 = localStorage.getItem('response_id3')===null ? 9 : localStorage.getItem('response_id3');
+            if (response_id3) {
+                sendVote3(response_id3).then(r => console.log(r));
+            } else {
+                console.log('Response ID is not available');
+            }
+
+        }
+        window.location.reload();
     }
+
 
     const totalVotes = voteopt1 + voteopt2 + voteopt3;
 
