@@ -108,7 +108,7 @@ function PollPage(props) {
     };
 
     useEffect(() => {
-        let poolId = localStorage.getItem('pool_id')===null ? 32 : localStorage.getItem('pool_id');
+        let poolId = localStorage.getItem('pool_id')===null ? 3 : localStorage.getItem('pool_id');
         if (poolId) {
             fetchQuestion(poolId).then(r => console.log(r));
         } else {
