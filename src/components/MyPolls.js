@@ -8,7 +8,15 @@ const MyPolls = () => {
     const [polls, setPolls] = useState([]);
     const [selectedQuestion, setSelectedQuestion] = useState('');
     const [questionInfo, setQuestionInfo] = useState([]);
-    const [options, setOptions] = useState([]);
+    const [opt1, setOpt1] = useState('');
+    const [opt2, setOpt2] = useState('');
+    const [opt3, setOpt3] = useState('');
+    const [resID1,setResID1]=useState(0)
+    const [resID2,setResID2]=useState(0)
+    const [resID3,setResID3]=useState(0)
+    const [vote1, SetVote1]=useState(0)
+    const [vote2,SetVote2]=useState(0)
+    const [vote3,SetVote3]=useState(0)
     const [votes, setVotes] = useState([]);
     const user_id = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
@@ -45,18 +53,81 @@ const MyPolls = () => {
             const filteredQuestionInfo = polls.filter(
                 (poll) => poll.question === selectedQuestion
             );
+            const resIDs=[...new Set(filteredQuestionInfo.map(x=>x.response_id))]
+
+            console.log(resIDs)
+            setResID1(resIDs[0])
+            setResID2(resIDs[1])
+            setResID3(resIDs[2])
             setQuestionInfo(filteredQuestionInfo);
-            const options = filteredQuestionInfo.map((poll) => poll.option);
-            const votes = filteredQuestionInfo.map((poll) => poll.response_id);
-            setOptions(options);
-            setVotes(votes);
+            const options = [...new Set(filteredQuestionInfo.map((poll) => poll.option))];
+            setOpt1(options[0])
+            setOpt2(options[1])
+            setOpt3(options[2])
+
+            console.log(options)
         }
     }, [selectedQuestion]);
 
-    const totalVotes = votes.reduce((total, vote) => total + vote, 0);
-    const percentages = votes.map(
-        (vote) => ((vote / totalVotes) * 100).toFixed(2)
-    );
+    const fetchVote1 = async () => {
+        const response = await fetch(`http://localhost:5000/api/votes/count/${resID1}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+        SetVote1(data);
+    };
+
+    const fetchVote2 = async () => {
+        const response = await fetch(`http://localhost:5000/api/votes/count/${resID2}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+        SetVote2(data);
+    };
+
+    const fetchVote3 = async () => {
+        const response = await fetch(`http://localhost:5000/api/votes/count/${resID3}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+        SetVote3(data);
+    };
+
+    useEffect(() => {
+        if (resID1) {
+            fetchVote1();
+        }
+    }, [resID1]);
+
+    useEffect(() => {
+        if (resID2) {
+            fetchVote2();
+        }
+    }, [resID2]);
+
+    useEffect(() => {
+        if (resID3) {
+            fetchVote3();
+        }
+    }, [resID3]);
+
+    const totalVotes = vote1 + vote2 + vote3;
+
+    const percent1 = totalVotes === 0 ? 0 : ((vote1 / totalVotes) * 100).toFixed(2);
+    const percent2 = totalVotes === 0 ? 0 : ((vote2 / totalVotes) * 100).toFixed(2);
+    const percent3 = totalVotes === 0 ? 0 : ((vote3 / totalVotes) * 100).toFixed(2);
 
     return (
         <div>
@@ -78,11 +149,9 @@ const MyPolls = () => {
                                     {selectedQuestion}
                                 </h1>
                             </Card.Title>
-                            <MyChart
-                                votes={votes}
-                                options={options}
-                                percentages={percentages}
-                            />
+                            <MyChart voteopt1={vote1} voteopt2={vote2} voteopt3={vote3}
+                                     opt1={opt1} opt2={opt2} opt3={opt3}
+                                     pert1={percent1} pert2={percent2} pert3={percent3}/>
                         </Card.Body>
                     </Card>
                 </div>
