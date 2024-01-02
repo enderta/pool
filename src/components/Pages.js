@@ -31,6 +31,7 @@ function Pages() {
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/pools" element={<PollPage/>}/>
+                        <Route path='/all' element={<MyPolls/>}/>
                     </>
                 )}
             </Routes>
