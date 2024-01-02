@@ -3,6 +3,7 @@ import {Button, Card, ListGroup} from "react-bootstrap";
 import Logout from "./Logout";
 import MyChart from "./MyChart";
 
+
 function PollPage(props) {
     const [question, setQuestion] = useState('');
     const [opt1, setOpt1] = useState('');

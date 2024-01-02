@@ -17,13 +17,13 @@ const MyPolls = () => {
     const [vote1, SetVote1]=useState(0)
     const [vote2,SetVote2]=useState(0)
     const [vote3,SetVote3]=useState(0)
-    const [votes, setVotes] = useState([]);
     const user_id = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
+    const [poolId,setPoolId]=useState(0);
 
     const fetchPolls = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/all/${user_id}`, {
+            const res = await fetch(`http://localhost:5000/api/all/${2}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,6 +64,9 @@ const MyPolls = () => {
             setOpt1(options[0])
             setOpt2(options[1])
             setOpt3(options[2])
+            const pollIDs=[...new Set(filteredQuestionInfo.map((poll) => poll.poll_id))];
+            setPoolId(pollIDs[0])
+
 
             console.log(options)
         }
@@ -129,6 +132,16 @@ const MyPolls = () => {
     const percent2 = totalVotes === 0 ? 0 : ((vote2 / totalVotes) * 100).toFixed(2);
     const percent3 = totalVotes === 0 ? 0 : ((vote3 / totalVotes) * 100).toFixed(2);
 
+
+const handlePollBtn=(e)=>{
+    e.preventDefault()
+    localStorage.setItem("user_id",2)
+    localStorage.setItem("response_id1",resID1);
+    localStorage.setItem("response_id2",resID2);
+    localStorage.setItem("response_id3",resID3);
+    localStorage.setItem("pool_id",poolId);
+    window.location='/pools'
+}
     return (
         <div>
             <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
@@ -139,7 +152,16 @@ const MyPolls = () => {
                     </option>
                 ))}
             </Form.Select>
-
+            <Button
+                variant="primary"
+                type="submit"
+                style={{backgroundColor: 'goldenrod', border: 'none'}}
+                onClick={
+                handlePollBtn
+                }
+            >
+                Back to Pool
+            </Button>
             <div className="container d-flex justify-content-center">
                 <div className="container d-flex justify-content-center">
                     <Card className={'bg-dark text-light'} style={{ width: '50rem', height: '20rem', margin: '10px' }}>
