@@ -6,20 +6,21 @@ import Logout from './Logout';
 
 const MyPolls = () => {
     const [polls, setPolls] = useState([]);
-    const [selectedQuestion, setSelectedQuestion] = useState('');
+    const [selectedQuestion, setSelectedQuestion] = useState('Favorite Color?');
     const [questionInfo, setQuestionInfo] = useState([]);
     const [opt1, setOpt1] = useState('');
     const [opt2, setOpt2] = useState('');
     const [opt3, setOpt3] = useState('');
-    const [resID1,setResID1]=useState(0)
-    const [resID2,setResID2]=useState(0)
-    const [resID3,setResID3]=useState(0)
-    const [vote1, SetVote1]=useState(0)
-    const [vote2,SetVote2]=useState(0)
-    const [vote3,SetVote3]=useState(0)
+    const [resID1, setResID1] = useState(0)
+    const [resID2, setResID2] = useState(0)
+    const [resID3, setResID3] = useState(0)
+    const [vote1, SetVote1] = useState(0)
+    const [vote2, SetVote2] = useState(0)
+    const [vote3, SetVote3] = useState(0)
+    const [selected, setSelected] = useState(false)
     const user_id = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
-    const [poolId,setPoolId]=useState(0);
+    const [poolId, setPoolId] = useState(0);
 
     const fetchPolls = async () => {
         try {
@@ -45,7 +46,10 @@ const MyPolls = () => {
     const allTitles = [...new Set(polls.map((poll) => poll.question))];
 
     const handleSelectChange = (e) => {
+        e.preventDefault()
+        setSelected(true)
         setSelectedQuestion(e.target.value);
+
     };
 
     useEffect(() => {
@@ -53,7 +57,7 @@ const MyPolls = () => {
             const filteredQuestionInfo = polls.filter(
                 (poll) => poll.question === selectedQuestion
             );
-            const resIDs=[...new Set(filteredQuestionInfo.map(x=>x.response_id))]
+            const resIDs = [...new Set(filteredQuestionInfo.map(x => x.response_id))]
 
             console.log(resIDs)
             setResID1(resIDs[0])
@@ -64,7 +68,7 @@ const MyPolls = () => {
             setOpt1(options[0])
             setOpt2(options[1])
             setOpt3(options[2])
-            const pollIDs=[...new Set(filteredQuestionInfo.map((poll) => poll.poll_id))];
+            const pollIDs = [...new Set(filteredQuestionInfo.map((poll) => poll.poll_id))];
             setPoolId(pollIDs[0])
 
 
@@ -133,53 +137,71 @@ const MyPolls = () => {
     const percent3 = totalVotes === 0 ? 0 : ((vote3 / totalVotes) * 100).toFixed(2);
 
 
-const handlePollBtn=(e)=>{
-    e.preventDefault()
-    localStorage.setItem("user_id",2)
-    localStorage.setItem("response_id1",resID1);
-    localStorage.setItem("response_id2",resID2);
-    localStorage.setItem("response_id3",resID3);
-    localStorage.setItem("pool_id",poolId);
-    window.location='/pools'
-}
+    const handlePollBtn = (e) => {
+        e.preventDefault()
+        localStorage.setItem("user_id", 2)
+        localStorage.setItem("response_id1", resID1);
+        localStorage.setItem("response_id2", resID2);
+        localStorage.setItem("response_id3", resID3);
+        localStorage.setItem("pool_id", poolId);
+        window.location = '/pools'
+    }
+
     return (
         <div>
-            <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
-                <option>Select a question</option>
-                {allTitles.map((title, index) => (
-                    <option key={index} value={title}>
-                        {title}
-                    </option>
-                ))}
-            </Form.Select>
-            <Button
-                variant="primary"
-                type="submit"
-                style={{backgroundColor: 'goldenrod', border: 'none'}}
-                onClick={
-                handlePollBtn
-                }
-            >
-                Back to Pool
-            </Button>
-            <div className="container d-flex justify-content-center">
-                <div className="container d-flex justify-content-center">
-                    <Card className={'bg-dark text-light'} style={{ width: '50rem', height: '20rem', margin: '10px' }}>
-                        <Card.Body>
-                            <Card.Title>
-                                <h1 className="text-center" style={{ color: 'goldenrod' }}>
-                                    {selectedQuestion}
-                                </h1>
-                            </Card.Title>
-                            <MyChart voteopt1={vote1} voteopt2={vote2} voteopt3={vote3}
-                                     opt1={opt1} opt2={opt2} opt3={opt3}
-                                     pert1={percent1} pert2={percent2} pert3={percent3}/>
-                        </Card.Body>
-                    </Card>
-                </div>
-            </div>
+            {
+                selected ? (
+                    <>
+                        <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
+                            {allTitles.map((title, index) => (
+                                <option key={index} value={title}>
+                                    {title}
+                                </option>
+                            ))}
+                        </Form.Select>
+                        <Button
+                            variant="primary"
+                            type="submit"
+                            style={{backgroundColor: 'goldenrod', border: 'none'}}
+                            onClick={handlePollBtn}
+                        >
+                            Back to Pool
+                        </Button>
+                        <div className="container d-flex justify-content-center">
+                            <div className="container d-flex justify-content-center">
+                                <Card className={'bg-dark text-light'}
+                                      style={{width: '50rem', height: '20rem', margin: '10px'}}>
+                                    <Card.Body>
+                                        <Card.Title>
+                                            <h1 className="text-center" style={{color: 'goldenrod'}}>
+                                                {selectedQuestion}
+                                            </h1>
+                                        </Card.Title>
+                                        <MyChart voteopt1={vote1} voteopt2={vote2} voteopt3={vote3}
+                                                 opt1={opt1} opt2={opt2} opt3={opt3}
+                                                 pert1={percent1} pert2={percent2} pert3={percent3}/>
+                                    </Card.Body>
+                                </Card>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                    <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
+                        {allTitles.map((title, index) => (
+                            <option key={index} value={title}>
+                                {title}
+                            </option>
+                        ))}
+                    </Form.Select>
+                        <h1>
+                            select a poll to show
+                        </h1>
+                    </>
+                )
+            }
         </div>
-    );
-};
+    )
+}
 
 export default MyPolls;
