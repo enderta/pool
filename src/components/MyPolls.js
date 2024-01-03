@@ -210,7 +210,7 @@ const MyPolls = () => {
                     ) : (
                         <>
                             <div className="text-center" style={{ margin: "20px" }}>
-                                <h1 style={{ color: 'goldenrod' }}>My Polls</h1>
+                                <h1 style={{ color: 'goldenrod' }}>Polls</h1>
                             </div>
                             <div className="d-flex flex-column align-items-center">
                                 <Form.Select size="sm" style={{ height: '40px', width: "200px", margin: "20px" }} onChange={handleSelectChange}>
