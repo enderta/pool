@@ -208,33 +208,27 @@ const MyPolls = () => {
                         </div>
                         </div>
                     ) : (
-                    <div className="d-flex justify-content-center">
+                        <>
+                            <div className="text-center" style={{ margin: "20px" }}>
+                                <h1 style={{ color: 'goldenrod' }}>My Polls</h1>
+                            </div>
+                            <div className="d-flex flex-column align-items-center">
+                                <Form.Select size="sm" style={{ height: '40px', width: "200px", margin: "20px" }} onChange={handleSelectChange}>
+                                    <option >Select a poll</option>
+                                    {allTitles.map((title, index) => (
+                                        <option key={index} value={title}>
+                                            {title}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </div>
+                        </>
 
-                        <div>
-                            <Form.Select size="sm" style={{height: '40px', width: "200px"}} aria-label="Default select example"
-                                         onChange={handleSelectChange}>
-                                <option>
-                                    <div>
-                                        <h1 className="text-center" style={{color: 'goldenrod', margin: "20px"}}>Please
-                                            select a
-                                            poll</h1>
-                                    </div>
-                                </option>
-                                {allTitles.map((title, index) => (
-                                    <option key={index} value={title}>
-                                        {title}
-                                    </option>
-                                ))}
-                            </Form.Select>
-                        </div>
-
-
-</div>
                     )
                 }
             </div>
         );
-    };
+};
 
-    export default MyPolls;
+export default MyPolls;
 
