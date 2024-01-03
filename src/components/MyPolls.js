@@ -147,9 +147,22 @@ const MyPolls = () => {
 
         return (
             <div className="bg-dark text-light" style={{minHeight: '100vh', padding: '10px'}}>
-                <div className="d-flex justify-content-between">
 
-                    <Form.Select size="sm" style={{height:'40px',width:"200px"}} aria-label="Default select example" onChange={handleSelectChange}>
+                <div>
+
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        style={{backgroundColor: 'goldenrod', border: 'none', margin:"20px"}}
+                        onClick={() => {
+                            window.location = '/';
+                        }}
+                    >
+                        Back to Home
+                    </Button>
+
+                    <Form.Select size="sm" style={{height: '40px', width: "200px"}} aria-label="Default select example"
+                                 onChange={handleSelectChange}>
                         <option>Open this select menu</option>
                         {allTitles.map((title, index) => (
                             <option key={index} value={title}>
@@ -161,21 +174,26 @@ const MyPolls = () => {
                 {
                     selected ? (
                         <div className="bg-dark text-light" style={{minHeight: '100vh', padding: '10px'}}>
-                            <Button
-                                variant="primary"
-                                type="submit"
-                                style={{backgroundColor: 'goldenrod', border: 'none'}}
-                                onClick={handlePollBtn}
-                            >
-                                Give your vote
-                            </Button>
 
 
                         <div className="container d-flex justify-content-center">
 
                             <Card className={'bg-dark'} >
+
+
                                 <Card.Body>
+
                                     <Card.Title><h1 className="text-center" style={{color: 'goldenrod'}}>Question: {selectedQuestion}</h1></Card.Title>
+
+                                    <Button
+                                        variant="success"
+                                        type="submit"
+                                        style={{ border: 'none',margin:"10px"}}
+                                        onClick={handlePollBtn}
+                                    >
+                                        Give your vote
+                                    </Button>
+
                                         <MyChart voteopt1={vote1} voteopt2={vote2} voteopt3={vote3}
                                                  opt1={opt1} opt2={opt2} opt3={opt3}
                                                  pert1={percent1} pert2={percent2} pert3={percent3}/>
