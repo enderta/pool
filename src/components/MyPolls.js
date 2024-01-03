@@ -161,21 +161,27 @@ const MyPolls = () => {
                         Back to Home
                     </Button>
 
-                    <Form.Select size="sm" style={{height: '40px', width: "200px"}} aria-label="Default select example"
-                                 onChange={handleSelectChange}>
-                        <option>Open this select menu</option>
-                        {allTitles.map((title, index) => (
-                            <option key={index} value={title}>
-                                {title}
-                            </option>
-                        ))}
-                    </Form.Select>
+
                 </div>
                 {
                     selected ? (
-                        <div className="bg-dark text-light" style={{minHeight: '100vh', padding: '10px'}}>
+                        <div className="bg-dark text-light" style={{minHeight: '100vh'}}>
 
+                            <Form.Select size="sm" style={{height: '40px', width: "200px"}} aria-label="Default select example"
+                                         onChange={handleSelectChange}>
 
+                                    <div>
+                                        <h1 className="text-center" style={{color: 'goldenrod', margin: "10px"}}>Please
+                                            select a
+                                            poll</h1>
+                                    </div>
+
+                                {allTitles.map((title, index) => (
+                                    <option key={index} value={title}>
+                                        {title}
+                                    </option>
+                                ))}
+                            </Form.Select>
                         <div className="container d-flex justify-content-center">
 
                             <Card className={'bg-dark'} >
@@ -203,7 +209,26 @@ const MyPolls = () => {
                         </div>
                     ) : (
                     <div className="d-flex justify-content-center">
-                    <h1 className="text-center" style={{color: 'goldenrod',margin:"20px"}}>Please select a poll</h1>
+
+                        <div>
+                            <Form.Select size="sm" style={{height: '40px', width: "200px"}} aria-label="Default select example"
+                                         onChange={handleSelectChange}>
+                                <option>
+                                    <div>
+                                        <h1 className="text-center" style={{color: 'goldenrod', margin: "20px"}}>Please
+                                            select a
+                                            poll</h1>
+                                    </div>
+                                </option>
+                                {allTitles.map((title, index) => (
+                                    <option key={index} value={title}>
+                                        {title}
+                                    </option>
+                                ))}
+                            </Form.Select>
+                        </div>
+
+
 </div>
                     )
                 }
