@@ -299,8 +299,8 @@ function PollPage(props) {
                             </ListGroup.Item>
                         </ListGroup>
 
-                        <Button variant="danger" onClick={reset} style={{marginTop: '10px'}}>Reset</Button>
-                        <span style={{float: 'right', marginTop: '10px'}}><Logout/></span>
+                      {/*  <Button variant="danger" onClick={reset} style={{marginTop: '10px'}}>Reset</Button>
+                        <span style={{float: 'right', marginTop: '10px'}}><Logout/></span>*/}
                     </Card.Body>
                 </Card>
                 <div className="container d-flex justify-content-center">
