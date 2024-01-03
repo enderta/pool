@@ -48,7 +48,7 @@ const CreatingPool = () => {
 
     return (
         <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '20px'}}>
-            <Button variant="primary" href="/pools" style={{margin: '10px'}}>Poll Page</Button>
+            <Button variant="primary" href="/all" style={{margin: '10px'}}>Polls</Button>
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
