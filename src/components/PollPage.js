@@ -21,8 +21,7 @@ function PollPage(props) {
         const response = await fetch(`http://localhost:5000/api/votes/count/${response_id1}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
             },
         });
         const data = await response.json();
@@ -33,8 +32,7 @@ function PollPage(props) {
         const response = await fetch(`http://localhost:5000/api/votes/count/${response_id2}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
             },
         });
         const data = await response.json();
@@ -45,8 +43,7 @@ function PollPage(props) {
         const response = await fetch(`http://localhost:5000/api/votes/count/${response_id3}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
             },
         });
         const data = await response.json();
@@ -57,8 +54,7 @@ function PollPage(props) {
         const response = await fetch(`http://localhost:5000/api/q/${id}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
             },
         });
         const data = await response.json();
@@ -70,8 +66,7 @@ function PollPage(props) {
         const response = await fetch(`http://localhost:5000/api/res/${id}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
             },
         });
         const data = await response.json();
@@ -84,8 +79,7 @@ function PollPage(props) {
         const response = await fetch(`http://localhost:5000/api/res/${id}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
             },
         });
         const data = await response.json();
@@ -98,8 +92,7 @@ function PollPage(props) {
         const response = await fetch(`http://localhost:5000/api/res/${id}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
             },
         });
         const data = await response.json();

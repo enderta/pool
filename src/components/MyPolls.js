@@ -27,8 +27,7 @@ const MyPolls = () => {
             const res = await fetch(`http://localhost:5000/api/all/${user_id}`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `${token}`,
+                    'Content-Type': 'application/json'
                 },
             });
             const data = await res.json();
@@ -81,7 +80,6 @@ const MyPolls = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
             },
         });
         const data = await response.json();
@@ -93,7 +91,6 @@ const MyPolls = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
             },
         });
         const data = await response.json();
@@ -105,7 +102,6 @@ const MyPolls = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
             },
         });
         const data = await response.json();
@@ -152,14 +148,7 @@ const MyPolls = () => {
         return (
             <div className="bg-dark text-light" style={{minHeight: '100vh', padding: '10px'}}>
                 <div className="d-flex justify-content-between">
-                    <Button
-                        variant="primary"
-                        type="submit"
-                        style={{backgroundColor: 'goldenrod', border: 'none'}}
-                        onClick={handlePollBtn}
-                    >
-                        Back to Pool
-                    </Button>
+
                     <Form.Select size="sm" style={{height:'40px',width:"200px"}} aria-label="Default select example" onChange={handleSelectChange}>
                         <option>Open this select menu</option>
                         {allTitles.map((title, index) => (
@@ -171,7 +160,19 @@ const MyPolls = () => {
                 </div>
                 {
                     selected ? (
+                        <div className="bg-dark text-light" style={{minHeight: '100vh', padding: '10px'}}>
+                            <Button
+                                variant="primary"
+                                type="submit"
+                                style={{backgroundColor: 'goldenrod', border: 'none'}}
+                                onClick={handlePollBtn}
+                            >
+                                Give your vote
+                            </Button>
+
+
                         <div className="container d-flex justify-content-center">
+
                             <Card className={'bg-dark'} >
                                 <Card.Body>
                                     <Card.Title><h1 className="text-center" style={{color: 'goldenrod'}}>Question: {selectedQuestion}</h1></Card.Title>
@@ -180,6 +181,7 @@ const MyPolls = () => {
                                                  pert1={percent1} pert2={percent2} pert3={percent3}/>
                                 </Card.Body>
                             </Card>
+                        </div>
                         </div>
                     ) : (
                     <div className="d-flex justify-content-center">
