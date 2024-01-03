@@ -26,7 +26,7 @@ router.post("/votes",  voteController.createVote);
 
 //update a question
 
-router.put("/votes/:id", verifyToken, voteController.updateVote);
+router.put("/votes/:id",  voteController.updateVote);
 
 //delete a question
 
