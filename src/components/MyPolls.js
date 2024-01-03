@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { Button, Card, ListGroup } from 'react-bootstrap';
+import {Button, Card, Container, ListGroup} from 'react-bootstrap';
 import MyChart from './MyChart';
 
 
@@ -147,65 +147,49 @@ const MyPolls = () => {
         window.location = '/pools'
     }
 
-    return (
-        <div>
-            {
-                selected ? (
-                    <>
-                        <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
-                            <option>Open this select menu</option>
-                            {allTitles.map((title, index) => (
-                                <option key={index} value={title}>
-                                    {title}
-                                </option>
-                            ))}
 
-                        </Form.Select>
-                        <Button
-                            variant="primary"
-                            type="submit"
-                            style={{backgroundColor: 'goldenrod', border: 'none'}}
-                            onClick={handlePollBtn}
-                        >
-                            Back to Pool
-                        </Button>
+
+        return (
+            <div className="bg-dark text-light" style={{minHeight: '100vh', padding: '10px'}}>
+                <div className="d-flex justify-content-between">
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        style={{backgroundColor: 'goldenrod', border: 'none'}}
+                        onClick={handlePollBtn}
+                    >
+                        Back to Pool
+                    </Button>
+                    <Form.Select size="sm" style={{height:'40px',width:"200px"}} aria-label="Default select example" onChange={handleSelectChange}>
+                        <option>Open this select menu</option>
+                        {allTitles.map((title, index) => (
+                            <option key={index} value={title}>
+                                {title}
+                            </option>
+                        ))}
+                    </Form.Select>
+                </div>
+                {
+                    selected ? (
                         <div className="container d-flex justify-content-center">
-                            <div className="container d-flex justify-content-center">
-                                <Card className={'bg-dark text-light'}
-                                      style={{width: '50rem', height: '20rem', margin: '10px'}}>
-                                    <Card.Body>
-                                        <Card.Title>
-                                            <h1 className="text-center" style={{color: 'goldenrod'}}>
-                                                {selectedQuestion}
-                                            </h1>
-                                        </Card.Title>
+                            <Card className={'bg-dark'} >
+                                <Card.Body>
+                                    <Card.Title><h1 className="text-center" style={{color: 'goldenrod'}}>Question: {selectedQuestion}</h1></Card.Title>
                                         <MyChart voteopt1={vote1} voteopt2={vote2} voteopt3={vote3}
                                                  opt1={opt1} opt2={opt2} opt3={opt3}
                                                  pert1={percent1} pert2={percent2} pert3={percent3}/>
-                                    </Card.Body>
-                                </Card>
-                            </div>
+                                </Card.Body>
+                            </Card>
                         </div>
-                    </>
-                ) : (
-                    <>
-                        <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
-                            <option>Open this select menu</option>
-                            {allTitles.map((title, index) => (
-                                <option key={index} value={title}>
-                                    {title}
-                                </option>
-                            ))}
+                    ) : (
+                    <div className="d-flex justify-content-center">
+                    <h1 className="text-center" style={{color: 'goldenrod',margin:"20px"}}>Please select a poll</h1>
+</div>
+                    )
+                }
+            </div>
+        );
+    };
 
-                        </Form.Select>
-                        <h1>
-                            select a poll to show
-                        </h1>
-                    </>
-                )
-            }
-        </div>
-    )
-}
+    export default MyPolls;
 
-export default MyPolls;

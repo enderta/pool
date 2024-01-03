@@ -270,6 +270,9 @@ function PollPage(props) {
     return (
         <div className={'bg-dark text-light'} style={{minHeight: '100vh', padding: '20px'}}>
             <Button variant="primary" href="/login" style={{margin: '10px'}}>New Poll</Button>
+            <span style={{float: 'right', marginTop: '10px'}}>
+                <Button variant="success" href="/all" >Back to Polls</Button>
+            </span>
             <div className="container d-flex justify-content-center">
                 <Card className={'bg-dark text-light'} style={{width: '100rem', height: "30rem", margin: "10px"}}>
                     <Card.Body>
@@ -301,7 +304,7 @@ function PollPage(props) {
                     </Card.Body>
                 </Card>
                 <div className="container d-flex justify-content-center">
-                    <Card className={'bg-dark text-light'} style={{width: '50rem', height: "20rem", margin: "10px"}}>
+                    <Card className={'bg-dark'} >
                         <Card.Body>
                             <Card.Title><h1 className="text-center" style={{color: 'goldenrod'}}>Result</h1></Card.Title>
                             <MyChart voteopt1={voteopt1} voteopt2={voteopt2} voteopt3={voteopt3}
