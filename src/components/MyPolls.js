@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import MyChart from './MyChart';
-import Logout from './Logout';
+
 
 const MyPolls = () => {
     const [polls, setPolls] = useState([]);
-    const [selectedQuestion, setSelectedQuestion] = useState('Favorite Color?');
+    const [selectedQuestion, setSelectedQuestion] = useState('');
     const [questionInfo, setQuestionInfo] = useState([]);
     const [opt1, setOpt1] = useState('');
     const [opt2, setOpt2] = useState('');
@@ -14,9 +14,9 @@ const MyPolls = () => {
     const [resID1, setResID1] = useState(0)
     const [resID2, setResID2] = useState(0)
     const [resID3, setResID3] = useState(0)
-    const [vote1, SetVote1] = useState(0)
-    const [vote2, SetVote2] = useState(0)
-    const [vote3, SetVote3] = useState(0)
+    const [vote1, setVote1] = useState(0)
+    const [vote2, setVote2] = useState(0)
+    const [vote3, setVote3] = useState(0)
     const [selected, setSelected] = useState(false)
     const user_id = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
@@ -24,7 +24,7 @@ const MyPolls = () => {
 
     const fetchPolls = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/all/${2}`, {
+            const res = await fetch(`http://localhost:5000/api/all/${user_id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const MyPolls = () => {
             },
         });
         const data = await response.json();
-        SetVote1(data);
+        setVote1(data);
     };
 
     const fetchVote2 = async () => {
@@ -97,7 +97,7 @@ const MyPolls = () => {
             },
         });
         const data = await response.json();
-        SetVote2(data);
+        setVote2(data);
     };
 
     const fetchVote3 = async () => {
@@ -109,7 +109,7 @@ const MyPolls = () => {
             },
         });
         const data = await response.json();
-        SetVote3(data);
+        setVote3(data);
     };
 
     useEffect(() => {
@@ -139,7 +139,7 @@ const MyPolls = () => {
 
     const handlePollBtn = (e) => {
         e.preventDefault()
-        localStorage.setItem("user_id", 2)
+        localStorage.setItem("user_id", user_id)
         localStorage.setItem("response_id1", resID1);
         localStorage.setItem("response_id2", resID2);
         localStorage.setItem("response_id3", resID3);
@@ -153,11 +153,13 @@ const MyPolls = () => {
                 selected ? (
                     <>
                         <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
+                            <option>Open this select menu</option>
                             {allTitles.map((title, index) => (
                                 <option key={index} value={title}>
                                     {title}
                                 </option>
                             ))}
+
                         </Form.Select>
                         <Button
                             variant="primary"
@@ -187,13 +189,15 @@ const MyPolls = () => {
                     </>
                 ) : (
                     <>
-                    <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
-                        {allTitles.map((title, index) => (
-                            <option key={index} value={title}>
-                                {title}
-                            </option>
-                        ))}
-                    </Form.Select>
+                        <Form.Select aria-label="Default select example" onChange={handleSelectChange}>
+                            <option>Open this select menu</option>
+                            {allTitles.map((title, index) => (
+                                <option key={index} value={title}>
+                                    {title}
+                                </option>
+                            ))}
+
+                        </Form.Select>
                         <h1>
                             select a poll to show
                         </h1>
