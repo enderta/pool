@@ -9,7 +9,7 @@ function Home() {
                 <div>
                     <div style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
                         <h1 style={{color: 'goldenrod'}}>Hi, Welcome to Pool App</h1>
-                        <h1 style={{color: 'goldenrod'}}>to create a pool</h1>
+                        <h1 style={{color: 'goldenrod'}}>to create a poll</h1>
                         <a href={'/login'} style={{textDecoration: "none"}}>
                             <h1 style={{color: 'darkgreen'}}>Login</h1>
                         </a>
