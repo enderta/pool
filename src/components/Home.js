@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import {FaGithub, FaLinkedin} from 'react-icons/fa';
 
 
 function Home() {

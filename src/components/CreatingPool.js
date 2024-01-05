@@ -17,7 +17,7 @@ const CreatingPool = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let user_id = localStorage.getItem('user_id')===null ? 2 : localStorage.getItem('user_id');
+        let user_id = localStorage.getItem('user_id') === null ? 2 : localStorage.getItem('user_id');
         console.log(user_id);
 
         try {
@@ -32,7 +32,7 @@ const CreatingPool = () => {
                     question: question,
                 }),
             });
-            if(questionResponse.status !== 200) { // Change this to the status your server sends
+            if (questionResponse.status !== 200) { // Change this to the status your server sends
                 throw new Error('Error creating question');
             }
 

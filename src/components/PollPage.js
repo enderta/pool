@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, ListGroup} from "react-bootstrap";
-import Logout from "./Logout";
 import MyChart from "./MyChart";
 
 

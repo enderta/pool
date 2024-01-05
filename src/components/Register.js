@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Card, Form, Image} from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Button, Card, Form} from 'react-bootstrap';
 
 
 function Register() {
