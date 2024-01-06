@@ -1,15 +1,4 @@
-const bcrypt = require("bcrypt");
 const pool = require("../../../db.config");
-const jwt = require("jsonwebtoken");
-const secret = "secret";
-
-/*
-CREATE TABLE responses (
-   id SERIAL PRIMARY KEY,
-   option VARCHAR(255) NOT NULL,
-   poll_id INTEGER REFERENCES polls(id) ON DELETE CASCADE
- );
-*/
 
 const createResponse = async (poll_id,option) => {
     if(!poll_id || !option) {

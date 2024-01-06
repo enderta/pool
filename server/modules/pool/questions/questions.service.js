@@ -1,8 +1,4 @@
-const bcrypt = require("bcrypt");
 const pool = require("../../../db.config");
-const jwt = require("jsonwebtoken");
-const secret = "secret";
-
 
 const createQuestion = async (user_id,question) => {
     if(!user_id || !question) {

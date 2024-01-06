@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const verifyToken = require("../../../middlewares/verifyToken");
 const cors = require("cors");
 const allController=require('./all.controller')
 

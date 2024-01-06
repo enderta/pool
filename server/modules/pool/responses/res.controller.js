@@ -1,13 +1,5 @@
 const resService = require('./res.service');
 
-//module.exports = {
-//     createResponse,
-//     getResponses,
-//     getResponseById,
-//     updateResponse,
-//     deleteResponse
-// };
-
 const getRes = async (req, res) => {
     const data = await resService.getResponses();
     res.json(data);

@@ -13,7 +13,6 @@ const getVotes = async (req, res) => {
     }
 };
 
-
 const getVote = async (req, res) => {
     try {
         const vote = await voteservice.getVote(req.params.id);
@@ -22,20 +21,6 @@ const getVote = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
-/*
-const createRes = async (req, res) => {
-    const {poll_id} = req.body; // Corrected from poo_id to poll_id
-    const {option} = req.body;
-    if(poll_id && option) {
-        const data = await resService.createResponse(poll_id, option);
-        res.json(data);
-    }
-    else {
-        res.status(500).json({error: "Error creating response"});
-    }
-}
-* */
 
 const createVote = async (req, res) => {
     const { response_id } = req.body;

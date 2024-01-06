@@ -1,4 +1,3 @@
-
 const pool = require("../../../db.config");
 
 const createVote = async (response_id) => {
