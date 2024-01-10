@@ -11,16 +11,16 @@ const MyPolls = () => {
     const [opt1, setOpt1] = useState('');
     const [opt2, setOpt2] = useState('');
     const [opt3, setOpt3] = useState('');
-    const [resID1, setResID1] = useState(0)
-    const [resID2, setResID2] = useState(0)
-    const [resID3, setResID3] = useState(0)
-    const [vote1, setVote1] = useState(0)
-    const [vote2, setVote2] = useState(0)
-    const [vote3, setVote3] = useState(0)
+    const [resID1, setResID1] = useState(1)
+    const [resID2, setResID2] = useState(2)
+    const [resID3, setResID3] = useState(3)
+    const [vote1, setVote1] = useState(1)
+    const [vote2, setVote2] = useState(2)
+    const [vote3, setVote3] = useState(3)
     const [selected, setSelected] = useState(false)
-    const user_id = localStorage.getItem('user_id');
+    const user_id = localStorage.getItem('user_id') === null ? 1 : localStorage.getItem('user_id') ;
     const token = localStorage.getItem('token');
-    const [poolId, setPoolId] = useState(0);
+    const [poolId, setPoolId] = useState(1);
 
     const fetchPolls = async () => {
         try {

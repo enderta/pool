@@ -101,7 +101,7 @@ function PollPage(props) {
     };
 
     useEffect(() => {
-        let poolId = localStorage.getItem('pool_id')===null ? 3 : localStorage.getItem('pool_id');
+        let poolId = localStorage.getItem('pool_id')===null ? 1 : localStorage.getItem('pool_id');
         if (poolId) {
             fetchQuestion(poolId).then(r => console.log(r));
         } else {
@@ -110,7 +110,7 @@ function PollPage(props) {
     }, []);
 
     useEffect(() => {
-        let response_id1 = localStorage.getItem('response_id1')===null ? 7 : localStorage.getItem('response_id1');
+        let response_id1 = localStorage.getItem('response_id1')===null ? 1 : localStorage.getItem('response_id1');
         if (response_id1) {
             fetchOption1(response_id1).then(r => console.log(r));
         } else {
@@ -119,7 +119,7 @@ function PollPage(props) {
     }, []);
 
     useEffect(() => {
-        let response_id2 = localStorage.getItem('response_id2')===null ? 8 : localStorage.getItem('response_id2');
+        let response_id2 = localStorage.getItem('response_id2')===null ? 2 : localStorage.getItem('response_id2');
         if (response_id2) {
             fetchOption2(response_id2).then(r => console.log(r));
         } else {
@@ -128,7 +128,7 @@ function PollPage(props) {
     }, []);
 
     useEffect(() => {
-        let response_id3 = localStorage.getItem('response_id3')===null ? 9 : localStorage.getItem('response_id3');
+        let response_id3 = localStorage.getItem('response_id3')===null ? 3 : localStorage.getItem('response_id3');
         if (response_id3) {
             fetchOption3(response_id3).then(r => console.log(r));
         } else {
@@ -137,7 +137,7 @@ function PollPage(props) {
     }, []);
 
     useEffect(() => {
-        let response_id1 = localStorage.getItem('response_id1')===null ? 7 : localStorage.getItem('response_id1');
+        let response_id1 = localStorage.getItem('response_id1')===null ? 1 : localStorage.getItem('response_id1');
         if (response_id1) {
             fetchVote1(response_id1).then(r => console.log(r));
         } else {
@@ -146,7 +146,7 @@ function PollPage(props) {
     }, []);
 
     useEffect(() => {
-        let response_id2 = localStorage.getItem('response_id2')===null ? 8 : localStorage.getItem('response_id2');
+        let response_id2 = localStorage.getItem('response_id2')===null ? 2 : localStorage.getItem('response_id2');
         if (response_id2) {
             fetchVote2(response_id2).then(r => console.log(r));
         } else {
@@ -155,7 +155,7 @@ function PollPage(props) {
     }, []);
 
     useEffect(() => {
-        let response_id3 = localStorage.getItem('response_id3')===null ? 9 : localStorage.getItem('response_id3');
+        let response_id3 = localStorage.getItem('response_id3')===null ? 3 : localStorage.getItem('response_id3');
         if (response_id3) {
             fetchVote3(response_id3).then(r => console.log(r));
         } else {
@@ -165,7 +165,7 @@ function PollPage(props) {
 
 
     const sendVote1 = async (response_id1) => {
-        const storedResponseId = localStorage.getItem('response_id1')===null ? 7 : localStorage.getItem('response_id1');
+        const storedResponseId = localStorage.getItem('response_id1')===null ? 1 : localStorage.getItem('response_id1');
         if (storedResponseId) {
             const response = await fetch(`http://localhost:5000/api/votes`, {
                 method: 'POST',
@@ -185,7 +185,7 @@ function PollPage(props) {
     };
 
     const sendVote2 = async () => {
-        const storedResponseId = localStorage.getItem('response_id2')===null ? 8 : localStorage.getItem('response_id2');
+        const storedResponseId = localStorage.getItem('response_id2')===null ? 2 : localStorage.getItem('response_id2');
         if (storedResponseId) {
             const response = await fetch(`http://localhost:5000/api/votes`, {
                 method: 'POST',
@@ -204,7 +204,7 @@ function PollPage(props) {
     };
 
     const sendVote3 = async (response_id3) => {
-        const storedResponseId = localStorage.getItem('response_id3')===null ? 9 : localStorage.getItem('response_id3');
+        const storedResponseId = localStorage.getItem('response_id3')===null ? 3 : localStorage.getItem('response_id3');
         if (storedResponseId) {
             const response = await fetch(`http://localhost:5000/api/votes`, {
                 method: 'POST',
@@ -227,21 +227,21 @@ function PollPage(props) {
         e.preventDefault();
         const name = e.target.name;
         if (name === 'opt1') {
-            let response_id1 = localStorage.getItem('response_id1')===null ? 7 : localStorage.getItem('response_id1');
+            let response_id1 = localStorage.getItem('response_id1')===null ? 1 : localStorage.getItem('response_id1');
             if (response_id1) {
                 sendVote1(response_id1).then(r => console.log(r));
             } else {
                 console.log('Response ID is not available');
             }
         } else if (name === 'opt2') {
-            let response_id2 = localStorage.getItem('response_id2')===null ? 8 : localStorage.getItem('response_id2');
+            let response_id2 = localStorage.getItem('response_id2')===null ? 2 : localStorage.getItem('response_id2');
             if (response_id2) {
                 sendVote2(response_id2).then(r => console.log(r));
             } else {
                 console.log('Response ID is not available');
             }
         } else if (name === 'opt3') {
-            let response_id3 = localStorage.getItem('response_id3')===null ? 9 : localStorage.getItem('response_id3');
+            let response_id3 = localStorage.getItem('response_id3')===null ? 3 : localStorage.getItem('response_id3');
             if (response_id3) {
                 sendVote3(response_id3).then(r => console.log(r));
             } else {

@@ -13,6 +13,8 @@ const pool = new Pool({
     ssl: {
         rejectUnauthorized: false,
     },
+
+
 });
 
 pool.connect(function(err) {
@@ -20,6 +22,7 @@ pool.connect(function(err) {
         console.error('Error connecting to database:', err);
     } else {
         console.log('Connected to database');
+        console.log(process.env.DB_USER)
     }
 });
 

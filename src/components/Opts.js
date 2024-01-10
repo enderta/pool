@@ -25,7 +25,7 @@ const Opts = () => {
                     'Authorization': localStorage.getItem('token'),
                 },
                 body: JSON.stringify({
-                    poll_id:localStorage.getItem('pool_id')=== null ? 3 : localStorage.getItem('pool_id'),
+                    poll_id:localStorage.getItem('pool_id')=== null ? 1 : localStorage.getItem('pool_id'),
                     option: option1
                 }),
             });
@@ -50,7 +50,7 @@ const Opts = () => {
                     'Authorization': localStorage.getItem('token'),
                 },
                 body: JSON.stringify({
-                    poll_id:localStorage.getItem('pool_id')=== null ? 3 : localStorage.getItem('pool_id'),
+                    poll_id:localStorage.getItem('pool_id')=== null ? 1 : localStorage.getItem('pool_id'),
                     option:  option2
                 }),
             });
@@ -75,7 +75,7 @@ const Opts = () => {
                     'Authorization': localStorage.getItem('token'),
                 },
                 body: JSON.stringify({
-                    poll_id:localStorage.getItem('pool_id')=== null ? 3 : localStorage.getItem('pool_id'),
+                    poll_id:localStorage.getItem('pool_id')=== null ? 1 : localStorage.getItem('pool_id'),
                     option: option3
                 }),
             });
