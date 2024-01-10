@@ -18,7 +18,7 @@ const Opts = () => {
 
     const handleSubmit1 = async () => {
         try {
-            const responseResponse = await fetch('http://localhost:5000/api/res', {
+            const responseResponse = await fetch('https://poll-jqdi.onrender.com/api/res', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const Opts = () => {
 
     const handleSubmit2 = async () => {
         try {
-            const responseResponse = await fetch('http://localhost:5000/api/res', {
+            const responseResponse = await fetch('https://poll-jqdi.onrender.com/api/res', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const Opts = () => {
 
     const handleSubmit3= async () => {
         try {
-            const responseResponse = await fetch('http://localhost:5000/api/res', {
+            const responseResponse = await fetch('https://poll-jqdi.onrender.com/api/res', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

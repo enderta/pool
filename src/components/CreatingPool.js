@@ -21,7 +21,7 @@ const CreatingPool = () => {
         console.log(user_id);
 
         try {
-            const questionResponse = await fetch('http://localhost:5000/api/q', {
+            const questionResponse = await fetch('https://poll-jqdi.onrender.com/api/q', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

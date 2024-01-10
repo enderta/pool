@@ -24,7 +24,7 @@ const MyPolls = () => {
 
     const fetchPolls = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/all/${user_id}`, {
+            const res = await fetch(`https://poll-jqdi.onrender.com/api/all/${user_id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ const MyPolls = () => {
     }, [selectedQuestion]);
 
     const fetchVote1 = async () => {
-        const response = await fetch(`http://localhost:5000/api/votes/count/${resID1}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/votes/count/${resID1}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ const MyPolls = () => {
     };
 
     const fetchVote2 = async () => {
-        const response = await fetch(`http://localhost:5000/api/votes/count/${resID2}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/votes/count/${resID2}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ const MyPolls = () => {
     };
 
     const fetchVote3 = async () => {
-        const response = await fetch(`http://localhost:5000/api/votes/count/${resID3}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/votes/count/${resID3}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

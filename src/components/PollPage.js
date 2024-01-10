@@ -17,7 +17,7 @@ function PollPage(props) {
         setVoteopt3(0);
     }
     const fetchVote1 = async (response_id1) => {
-        const response = await fetch(`http://localhost:5000/api/votes/count/${response_id1}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/votes/count/${response_id1}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ function PollPage(props) {
         setVoteopt1(data);
     };
     const fetchVote2 = async (response_id2) => {
-        const response = await fetch(`http://localhost:5000/api/votes/count/${response_id2}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/votes/count/${response_id2}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ function PollPage(props) {
         setVoteopt2(data);
     };
     const fetchVote3 = async (response_id3) => {
-        const response = await fetch(`http://localhost:5000/api/votes/count/${response_id3}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/votes/count/${response_id3}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ function PollPage(props) {
         setVoteopt3(data);
     };
     const fetchQuestion = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/q/${id}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/q/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ function PollPage(props) {
     };
 
     const fetchOption1 = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/res/${id}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/res/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ function PollPage(props) {
     };
 
     const fetchOption2 = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/res/${id}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/res/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ function PollPage(props) {
     };
 
     const fetchOption3 = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/res/${id}`, {
+        const response = await fetch(`https://poll-jqdi.onrender.com/api/res/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -167,7 +167,7 @@ function PollPage(props) {
     const sendVote1 = async (response_id1) => {
         const storedResponseId = localStorage.getItem('response_id1')===null ? 1 : localStorage.getItem('response_id1');
         if (storedResponseId) {
-            const response = await fetch(`http://localhost:5000/api/votes`, {
+            const response = await fetch(`https://poll-jqdi.onrender.com/api/votes`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ function PollPage(props) {
     const sendVote2 = async () => {
         const storedResponseId = localStorage.getItem('response_id2')===null ? 2 : localStorage.getItem('response_id2');
         if (storedResponseId) {
-            const response = await fetch(`http://localhost:5000/api/votes`, {
+            const response = await fetch(`https://poll-jqdi.onrender.com/api/votes`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -206,7 +206,7 @@ function PollPage(props) {
     const sendVote3 = async (response_id3) => {
         const storedResponseId = localStorage.getItem('response_id3')===null ? 3 : localStorage.getItem('response_id3');
         if (storedResponseId) {
-            const response = await fetch(`http://localhost:5000/api/votes`, {
+            const response = await fetch(`https://poll-jqdi.onrender.com/api/votes`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
